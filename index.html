@@ -1,0 +1,270 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;font-size:14px}img{max-width:100%}</style>
+<title>Valentina Buitron Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a single reading column; each project is a "case file" with a meta strip, a narrative, and a ledger of what I built. Each project carries its own accent. */
+:root {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --fg: #1b1c24;
+  --muted: #5d6070;
+  --line: #dcdee6;
+  --accent: #5b3fd1;
+  --vix: #8b0000;
+  --solace: #a77a12;
+  --eclipse: #6a3fc8;
+  --os: #0f7a72;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12131a; --surface: #1a1c25; --fg: #e9e9ef; --muted: #a2a5b6; --line: #2d303d;
+    --accent: #a995ff; --vix: #e0646b; --solace: #e2b54a; --eclipse: #b39bff; --os: #4cc3b8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12131a; --surface: #1a1c25; --fg: #e9e9ef; --muted: #a2a5b6; --line: #2d303d;
+  --accent: #a995ff; --vix: #e0646b; --solace: #e2b54a; --eclipse: #b39bff; --os: #4cc3b8;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.6; }
+.wrap { max-width: 860px; margin: 0 auto; padding-inline: 20px; padding-block: 56px 80px; display: grid; gap: 72px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.1; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.label { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* Hero */
+.hero { display: grid; gap: 20px; }
+.hero h1 { font-size: clamp(42px, 8vw, 76px); font-weight: 800; letter-spacing: -0.02em; }
+.hero h1 span { color: var(--accent); }
+.hero .lede { font-size: 20px; max-width: 62ch; color: var(--fg); }
+.ledger { display: flex; flex-wrap: wrap; gap: 10px 28px; font-family: var(--mono); font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; }
+.ledger b { color: var(--fg); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* Index */
+.index { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.index a { display: grid; grid-template-columns: 7.5rem 1fr auto; gap: 16px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--line); color: var(--fg); text-decoration: none; }
+.index a:hover .t { color: var(--c); }
+.index .d { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.index .t { font-family: var(--display); font-weight: 700; font-size: 22px; transition: color .15s; }
+.index .s { font-family: var(--mono); font-size: 13px; color: var(--c); text-align: right; }
+
+/* Case files */
+.case { --c: var(--accent); display: grid; gap: 28px; scroll-margin-top: 24px; }
+.case header { display: grid; gap: 10px; border-left: 4px solid var(--c); padding-left: 18px; }
+.case h2 { font-size: clamp(32px, 5.5vw, 48px); font-weight: 800; letter-spacing: -0.015em; }
+.case .tag { color: var(--c); }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px 24px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.meta div { min-width: 0; }
+.meta dt { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.meta dd { margin: 2px 0 0; font-size: 15px; line-height: 1.45; }
+.prose { display: grid; gap: 14px; max-width: 66ch; }
+h3 { font-size: 21px; font-weight: 700; margin-top: 6px; }
+ul.built { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+ul.built li { display: grid; grid-template-columns: minmax(0, 13rem) minmax(0, 1fr); gap: 6px 20px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+ul.built code, .mono { font-family: var(--mono); font-size: 14px; color: var(--c); overflow-wrap: anywhere; }
+ul.built span { font-size: 16px; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pills span { font-family: var(--mono); font-size: 12.5px; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--surface); }
+.fix { display: grid; gap: 12px; }
+.fix div { display: grid; gap: 2px; padding-left: 14px; border-left: 2px solid var(--line); }
+.fix b { font-family: var(--display); font-weight: 700; font-size: 16px; }
+.fix p { font-size: 16px; color: var(--muted); }
+.repo { font-family: var(--mono); font-size: 14px; }
+
+/* Hostility figure */
+figure { margin: 0; display: grid; gap: 8px; }
+figure svg { width: 100%; height: auto; max-width: 100%; display: block; }
+figcaption { font-size: 14px; color: var(--muted); font-family: var(--mono); }
+
+/* Closing */
+.closing { display: grid; gap: 18px; border-top: 1px solid var(--line); padding-top: 36px; }
+.closing h2 { font-size: 30px; font-weight: 800; }
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px 28px; }
+.skills div { min-width: 0; }
+.skills h4 { margin: 0 0 4px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.skills p { font-size: 15.5px; }
+
+@media (max-width: 560px) {
+  .index a { grid-template-columns: 1fr; gap: 2px; }
+  .index .s { text-align: left; }
+  ul.built li { grid-template-columns: minmax(0, 1fr); }
+  body { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@page { size: A4; margin: 16mm 14mm; }
+@media print {
+  :root { color-scheme: light; }
+  body { background: #fff; font-size: 11.5pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-size: 10.5pt; line-height: 1.5; }
+  .wrap, .case, .prose, .fix, .closing, .hero { display: block; max-width: none; padding: 0; }
+  .wrap > * + *, .case > * + *, .prose > * + *, .fix > * + *, .closing > * + *, .hero > * + * { margin-top: 14px; }
+  .wrap > * + * { margin-top: 30px; }
+  .hero h1 { font-size: 46px; }
+  .hero .lede { font-size: 15pt; }
+  .case h2 { font-size: 30px; }
+  .meta { grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 12px 16px; }
+  .meta dd { font-size: 10pt; }
+  ul.built li { grid-template-columns: 11rem minmax(0, 1fr); padding: 8px 0; }
+  ul.built span, .fix p { font-size: 10pt; }
+  figure svg { max-height: 150px; }
+  .case header, .meta, figure, ul.built li, .fix > div, .pills, .skills > div, .repo { break-inside: avoid; }
+  h3, .case header { break-after: avoid; }
+  .closing { break-inside: avoid; }
+  #bipolar, #blockchain { break-before: page; }
+}
+</style>
+
+<main class="wrap">
+
+  <section class="hero" aria-label="Introduction">
+    <p class="label">Computer Science · University of Trento · 2025/26</p>
+    <h1>Valentina<br><span>Buitron</span></h1>
+    <p class="lede">I build team software end to end: the domain model, the backend that keeps it honest, and the interface people actually touch. Over one academic year I shipped a hospital management web app in Java, a multi-threaded space simulation with a hand-drawn game interface in Rust, and a multi-process blockchain in C.</p>
+    <div class="ledger">
+      <span><b>3</b> team projects</span>
+      <span><b>3</b> languages: Java, Rust, C</span>
+      <span><b>104</b> commits authored</span>
+      <span>GitHub: <b>TheFIXmess</b></span>
+    </div>
+  </section>
+
+  <nav class="index" aria-label="Projects">
+    <a href="#vix" style="--c: var(--vix)"><span class="d">Jun 2026</span><span class="t">VIX Health System</span><span class="s">Java · Spring Boot</span></a>
+    <a href="#bipolar" style="--c: var(--eclipse)"><span class="d">Jun – Sep 2026</span><span class="t">Bipolar Orchestrator</span><span class="s">Rust · Bevy</span></a>
+    <a href="#blockchain" style="--c: var(--os)"><span class="d">Jul 2026</span><span class="t">Multi-process Blockchain</span><span class="s">C · Bash</span></a>
+  </nav>
+
+  <!-- VIX -->
+  <article class="case" id="vix" style="--c: var(--vix)">
+    <header>
+      <p class="label tag">Software Engineering · Team NVIVX</p>
+      <h2>VIX Health System</h2>
+    </header>
+    <dl class="meta">
+      <div><dt>What</dt><dd>Hospital management platform for a private network in Trento</dd></div>
+      <div><dt>Team</dt><dd>4 people: V. Fraccaroli, A. Harti, N. Kaur, me</dd></div>
+      <div><dt>My share</dt><dd>66 of 129 commits, the most on the team; repository admin</dd></div>
+      <div><dt>Stack</dt><dd>Java, Spring Boot 4, Thymeleaf, JPA, H2, Firebase, Doxygen</dd></div>
+    </dl>
+    <div class="prose">
+      <p>A public website (departments, specialists, an interactive hospital map, a questionnaire that points patients to the right specialist) in front of six role portals: Patient, Medical Specialist, Secretary, Technician, Buyer and Staff Manager. Patients book and pay for appointments; staff manage records, surgeries, shifts, vacations, machines and inventory, and every action lands in an audit log.</p>
+      <p>The architecture is a <strong>Rich Domain Model</strong>: business rules live on the entities themselves (a patient makes an appointment, an appointment cancels itself) and services only orchestrate and persist. I led a full audit that brought every model, service and controller in line with that rule.</p>
+    </div>
+    <h3>What I built</h3>
+    <ul class="built">
+      <li><code>Staff portals</code><span>Technician, Staff Manager and Medical Specialist areas: machine alerts and repair history, employee creation, shifts and vacations with conflict checks, a monthly calendar and daily schedule for specialists.</span></li>
+      <li><code>Front end</code><span>Rebuilt the Thymeleaf templates around real controller data only, with shared fragments and a crimson-and-gold design system.</span></li>
+      <li><code>Domain refactor</code><span>Implemented missing domain methods, moved inline logic out of controllers, wired type-safe enums for every status field.</span></li>
+      <li><code>Persistence</code><span>Moved to a file-based H2 database in PostgreSQL mode with idempotent seed data, so the team's SQL stayed portable and data survived restarts.</span></li>
+      <li><code>Features</code><span>Simulated SPID/CIE patient login, redirect-after-login, opening-hours enforcement, room transfer confirmation, resource withdrawal tracking with history.</span></li>
+      <li><code>Testing &amp; docs</code><span>Model and service test suite; Doxygen documentation with a custom dark theme and diagrams, published on GitHub Pages.</span></li>
+      <li><code>Deliverables</code><span>Wrote the Functional Requirements and the architecture, language choice and dependency sections of the final report.</span></li>
+    </ul>
+    <p class="repo">Repo: <a href="https://github.com/se-vix-health-sytem/se-vix-health-system">se-vix-health-sytem/se-vix-health-system</a></p>
+  </article>
+
+  <!-- Bipolar -->
+  <article class="case" id="bipolar" style="--c: var(--eclipse)">
+    <header>
+      <p class="label tag">Advanced Programming · Rust</p>
+      <h2>Bipolar Orchestrator</h2>
+    </header>
+    <dl class="meta">
+      <div><dt>What</dt><dd>Concurrent space simulation: 7 planets, 2 explorers, one two-minded orchestrator</dd></div>
+      <div><dt>Team</dt><dd>2 people: Viviana Fraccaroli and me</dd></div>
+      <div><dt>My share</dt><dd>19 of 22 commits; the whole GUI and all of its pixel art</dd></div>
+      <div><dt>Stack</dt><dd>Rust, Bevy 0.19, crossbeam channels, Aseprite</dd></div>
+    </dl>
+    <div class="prose">
+      <p>The course fixed the world: planets written by other student groups, explorers, sunrays and asteroids, all talking over a shared message protocol. Each team designed its own orchestrator. Ours is one body with two minds. <span style="color:var(--solace);font-weight:600">Solace</span> nurtures planets with sunrays; <span style="color:var(--eclipse);font-weight:600">Eclipse</span> destroys them with asteroids. Each believes the other is the villain, and each keeps waking the other up.</p>
+      <p>Mechanically, a global hostility value climbs over about four minutes and hands control to Eclipse once it crosses one half. Every planet also gets a randomly assigned curve (sine, cosine, sawtooth, triangle, square or exponential) that makes its own odds wobble, blended against its inverse by hostility. A death eases the pressure a little. The player can intervene, framed as infiltrating the orchestrator's mind, but repeated overrides against a personality's nature raise a suspicion meter until she refuses.</p>
+    </div>
+    <figure>
+      <svg viewBox="0 0 640 170" role="img" aria-label="Hostility rises from 0 to 1 over about 240 seconds, crossing the 0.5 Eclipse threshold at about 120 seconds, with a small drop when a planet dies.">
+        <line x1="40" y1="140" x2="620" y2="140" stroke="var(--line)" stroke-width="1" fill="none"/>
+        <line x1="40" y1="20" x2="40" y2="140" stroke="var(--line)" stroke-width="1" fill="none"/>
+        <line x1="40" y1="80" x2="620" y2="80" stroke="var(--eclipse)" stroke-width="1" stroke-dasharray="4 5" fill="none"/>
+        <text x="48" y="74" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--eclipse)">0.5 · Eclipse takes over</text>
+        <polyline fill="none" stroke="var(--solace)" stroke-width="2.5" points="40,140 280,92 280,99 330,89"/>
+        <polyline fill="none" stroke="var(--eclipse)" stroke-width="2.5" points="330,89 375,80 420,71 420,78 590,44"/>
+        <circle cx="280" cy="99" r="4" fill="var(--fg)"/>
+        <text x="286" y="116" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--muted)">planet dies</text>
+        <text x="36" y="144" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--muted)">0</text>
+        <text x="36" y="24" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--muted)">1</text>
+        <text x="40" y="160" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--muted)">0 s</text>
+        <text x="620" y="160" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--muted)">~240 s</text>
+      </svg>
+      <figcaption>Global hostility over one game, illustrative. Per-planet curves ride on top of it.</figcaption>
+    </figure>
+    <h3>What I built</h3>
+    <ul class="built">
+      <li><code>gui/</code><span>The full Bevy interface: a first-person spaceship cockpit around the galaxy, animated planets and explorers, portrait and stance for whichever mind is in control, sunray and asteroid projectiles, holographic inspect panels, a map hologram, resource badges, suspicion meters and a game-over screen.</span></li>
+      <li><code>Pixel art</code><span>Every sprite sheet drawn in Aseprite: 7 planets with idle, hit, dying and destroyed states, Solace and Eclipse, both explorers, nebulas, the cockpit, buttons and cursor. Animation timing is read from the Aseprite JSON at startup, never hardcoded.</span></li>
+      <li><code>probability/</code><span>The curve system, the hostility ramp, a grace period for newborn planets, and the Solace/Eclipse rules.</span></li>
+      <li><code>galaxy/, routing/</code><span>Topology parser, explorer movement protocol, the factories for all seven planet crates, and the interactive CLI.</span></li>
+      <li><code>explorer_jebediah</code><span>Co-wrote our second explorer, inspired by Jebediah Kerman: I built his AI state machine and his mapping of the galaxy. He is the reckless cartographer.</span></li>
+    </ul>
+    <h3>Problems worth telling</h3>
+    <div class="fix">
+      <div><b>A message eaten by the wrong reader</b><p>Several callers shared one channel and accepted whatever arrived next as their acknowledgement. A leftover message from a dying planet could be read as another planet's reply. A matching helper now discards strays until the real acknowledgement arrives.</p></div>
+      <div><b>Galaxies dying in three seconds</b><p>A planet that has never received a sunray cannot build a rocket, so its first asteroid is always fatal. With seven planets rolling at once, someone died on tick one. A short grace period for new planets fixed it; games went from seconds to minutes.</p></div>
+      <div><b>The screen must never lie</b><p>Our rule was that the GUI only shows what the backend confirms. Explorer movement is driven by a real move event queued per explorer, not guessed on the client, and the simulation waits for the window before starting.</p></div>
+    </div>
+    <div class="pills"><span>Arc&lt;Mutex&lt;T&gt;&gt;</span><span>try_lock</span><span>std::thread</span><span>crossbeam-channel</span><span>generics</span><span>ECS</span></div>
+    <p class="repo">Repos: <a href="https://github.com/luna4-ap2025/Bipolar-Orchestrator">luna4-ap2025/Bipolar-Orchestrator</a> · <a href="https://github.com/TheFIXmess/explorer_jebediah">TheFIXmess/explorer_jebediah</a></p>
+  </article>
+
+  <!-- Blockchain -->
+  <article class="case" id="blockchain" style="--c: var(--os)">
+    <header>
+      <p class="label tag">Operating Systems · Team OperatingCats</p>
+      <h2>Multi-process Blockchain</h2>
+    </header>
+    <dl class="meta">
+      <div><dt>What</dt><dd>A blockchain run as cooperating Unix processes</dd></div>
+      <div><dt>Team</dt><dd>3 people: V. Fraccaroli, A. Harti, me</dd></div>
+      <div><dt>My share</dt><dd>Process lifecycle, IPC and the Miner; about 3,400 lines</dd></div>
+      <div><dt>Stack</dt><dd>C11, POSIX, pthreads, Unix domain sockets, Bash, Make</dd></div>
+    </dl>
+    <div class="prose">
+      <p>Clients generate transactions, Miners collect them and race to produce a block, and Node 0 validates and appends the winner before broadcasting it to the other nodes, which recover any blocks they missed. Blocks carry SHA-256 hashes and Merkle roots, the chain is saved as CSV, and a separate Bash script can verify it independently. The point of the project was to exercise the operating system underneath it.</p>
+    </div>
+    <h3>What I built</h3>
+    <ul class="built">
+      <li><code>bootstrap.c</code><span>Starts and manages everything: argument parsing, the runtime directory, fork and exec for every child, PID tracking, reaping crashed children, and the operator console (submit, request, save, pause, resume, stop).</span></li>
+      <li><code>miner.c, mempool.c</code><span>A communication thread and a mining thread over a mutex-protected mempool. Mining sleeps can be interrupted the moment another block is committed or shutdown starts, and a lagging miner resyncs from Node 0.</span></li>
+      <li><code>ipc.c, process_info.c</code><span>The Unix domain socket layer every process uses, with framing, size limits and tests, plus shared process bookkeeping and the new IPC and process error codes.</span></li>
+      <li><code>tests/, scripts/</code><span>Integration tests for bootstrap, miner restart, pause/resume, crash handling, shutdown and cleanup, plus demo, cleanup and environment-check scripts wired into the Makefile.</span></li>
+    </ul>
+    <div class="fix">
+      <div><b>Double free under load</b><p>An uninitialized block struct in the miner's commit and resync path corrupted the heap once real blocks started flowing. Found it in a live run, fixed it, and made the crash test actually crash a process.</p></div>
+    </div>
+    <div class="pills"><span>fork / execv / waitpid</span><span>signals</span><span>pthreads &amp; mutexes</span><span>AF_UNIX sockets</span><span>SHA-256</span><span>Merkle trees</span></div>
+    <p class="repo">Repo: <a href="https://github.com/OperatingCats/OS_Project_4">OperatingCats/OS_Project_4</a></p>
+  </article>
+
+  <section class="closing" aria-label="How I work">
+    <h2>How I work</h2>
+    <div class="prose">
+      <p>On every team I ended up as the integrator: checking the whole project against the specification, keeping file ownership clear, resolving merges and telling teammates exactly what was still missing and why. I care about systems that tell the truth: the interface shows only what the backend confirms, and every feature is tested in a real run before it ships.</p>
+    </div>
+    <div class="skills">
+      <div><h4>Languages</h4><p>Java, Rust, C, Bash, SQL, HTML/CSS</p></div>
+      <div><h4>Frameworks</h4><p>Spring Boot, Thymeleaf, JPA/Hibernate, Bevy, JUnit</p></div>
+      <div><h4>Systems</h4><p>Concurrency, message passing, Unix processes and IPC</p></div>
+      <div><h4>Craft</h4><p>Pixel art in Aseprite, UI design, technical documentation</p></div>
+    </div>
+  </section>
+
+</main>
+
+</html>
